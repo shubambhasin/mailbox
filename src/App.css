@@ -1,10 +1,9 @@
 @import "https://ease-css.netlify.app/ease/css/ease.css";
 
-*{
+* {
   box-sizing: border-box;
 }
 .App {
-
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -33,8 +32,12 @@ hr {
   width: 90%;
   margin-left: 55px;
   transition: 0.3s all;
-
 }
-.link{
+.link {
   color: black;
+  transition: 0.3s all ease;
+}
+.link:hover {
+  cursor: pointer;
+  color: white;
 }

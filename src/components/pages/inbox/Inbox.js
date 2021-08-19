@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { setCurrentMail } from "../../../features/mail/mailSlice";
 import { togglePreviewWindow } from "../../../features/navbar/navbarSlice";
 import { getFilteredMails, getFinalData } from "../../../utils/utils";
 import MailBody from "../../mailBody/MailBody";
@@ -9,24 +8,18 @@ import Mails from "../../mails/Mails";
 import "./inbox.css";
 const Inbox = () => {
   const mails = useSelector((state) => state.mails);
-  const {isOpen, isPreviewWindowOpen} = useSelector((state) => state.navbar);
+  const { isOpen, isPreviewWindowOpen } = useSelector((state) => state.navbar);
   const dispatch = useDispatch();
   const location = useLocation();
   var searchParams = new URLSearchParams(location.search.toString());
   const filter = searchParams.get("filter");
-  const search = searchParams.get("search")
-  const filteredMails = getFilteredMails(mails, filter );
-  const finalData = getFinalData(filteredMails, search)
-
+  const search = searchParams.get("search");
+  const filteredMails = getFilteredMails(mails, filter);
+  const finalData = getFinalData(filteredMails, search);
   const mailId = new URLSearchParams(location.search).get("id");
-
-  const selectedMail = filteredMails.filter(
-    (mail) => mail.id === Number(mailId)
-  );
 
   useEffect(() => {
     if (mailId) {
-
       dispatch(togglePreviewWindow());
     }
   }, [mailId]);
@@ -44,19 +37,24 @@ const Inbox = () => {
       {mails.status === "loading" && <h1 className="h3">Loading...</h1>}
       <div className="flex gap-2">
         {mails.status === "success" && (
-          <div className={`${isPreviewWindowOpen} ? full-inbox inbox  : full-inbox inbox`}>
+          <div
+            className={`${isPreviewWindowOpen} ? full-inbox inbox  : full-inbox inbox`}
+          >
             {" "}
-            <Mails mails={finalData} />
+            {finalData.length === 0 ? (
+              <h1 className="h4 f-center">Did not match anything...</h1>
+            ) : (
+              <Mails mails={finalData} />
+            )}{" "}
           </div>
         )}
-        {/* { mailId !== null && <div className="mailbody-container">
-          {" "}
-          <MailBody />
-        </div>} */}
-        { isPreviewWindowOpen && <div className="mailbody-container">
-          {" "}
-          <MailBody />
-        </div>}
+
+        {isPreviewWindowOpen && (
+          <div className="mailbody-container">
+            {" "}
+            <MailBody />
+          </div>
+        )}
       </div>
     </div>
   );

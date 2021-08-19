@@ -3,7 +3,9 @@ import { FiMenu } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { toggleNavbar } from "../../features/navbar/navbarSlice";
+import { SiGmail } from 'react-icons/si'
 import "./navbar.css";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState();
   const location = useLocation();
@@ -39,20 +41,25 @@ const Navbar = () => {
           >
             <FiMenu size={28} />
           </span>
+          <div className="brand pointer">
+          <NavLink to="/" className="link"><SiGmail size={28}/></NavLink>
+          </div>
           <h1 className="h3 pointer inline">Mailbox</h1>
-          <small className="t-grey">
+          <small className="t-grey text-fixed">
             ({filter === null ? "Inbox" : filter})
           </small>
         </div>
       </div>
-      <div>
-       <form onSubmit={handleSearch}>
+      <div className="center-search">
+       <form onSubmit={handleSearch} className="flex gap-1">
        <input
           placeholder="Search mails..."
           type="text"
           value={searchQuery}
+          className="input-red-outline"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+        <button className="btn btn-green">Search</button>
        </form>
       </div>
     </div>
