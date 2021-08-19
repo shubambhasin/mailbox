@@ -25,6 +25,7 @@ const Navbar = () => {
           navigate(`?search=${searchQuery}`)
           
         }
+        setSearchQuery("")
   };
 
   const dispatch = useDispatch();
