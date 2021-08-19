@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { instance } from "../../api/Axios";
-import { ALL_MAILS } from "../../reducer/actions";
 
 export const getMails = createAsyncThunk("mails/getMails", async () => {
   try {

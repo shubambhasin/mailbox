@@ -28,6 +28,12 @@ export const navbarSlice = createSlice({
     togglePreviewWindow: (state) => {
       return {
         ...state,
+        isPreviewWindowOpen: !state.isPreviewWindowOpen,
+      };
+    },
+    openPreviewWindow: (state) => {
+      return {
+        ...state,
         isPreviewWindowOpen: true,
       };
     },
@@ -35,5 +41,5 @@ export const navbarSlice = createSlice({
   extraReducers: {},
 });
 
-export const { toggleNavbar, togglePreviewWindow, openNavbar, closeNavbar } = navbarSlice.actions;
+export const { toggleNavbar, togglePreviewWindow, openPreviewWindow, openNavbar, closeNavbar } = navbarSlice.actions;
 export default navbarSlice.reducer;

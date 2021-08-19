@@ -54,7 +54,7 @@
   box-shadow: 0 0 10px 1px rgb(241, 241, 241);
   z-index: 10;
 }
-/* ///////////////////////////////////////////////////////////// */
+/* ***************vertical navbar************************ */
 .navbar-vertical-full {
     position: fixed;
     width: 200px;

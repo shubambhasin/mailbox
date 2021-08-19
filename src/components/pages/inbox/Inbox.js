@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { togglePreviewWindow } from "../../../features/navbar/navbarSlice";
+import { openPreviewWindow, togglePreviewWindow } from "../../../features/navbar/navbarSlice";
 import { getFilteredMails, getFinalData } from "../../../utils/utils";
 import MailBody from "../../mailBody/MailBody";
 import Mails from "../../mails/Mails";
+import { GrClose } from "react-icons/gr";
 import "./inbox.css";
 const Inbox = () => {
   const mails = useSelector((state) => state.mails);
@@ -20,26 +21,31 @@ const Inbox = () => {
 
   useEffect(() => {
     if (mailId) {
-      dispatch(togglePreviewWindow());
+      dispatch(openPreviewWindow());
     }
   }, [mailId]);
 
   return (
     <div className={`${isOpen ? "container-slim " : "container-full"}`}>
-      <div>
+      <div className="flex jcsb">
         {" "}
-        <h1 className="h1">
+        <h1 className="h1 ">
           {filter !== null
             ? filter?.slice(0, 1).toUpperCase() + filter.slice(1)
             : "Inbox"}
         </h1>
+        {isPreviewWindowOpen ? (
+          <button onClick={() => dispatch(togglePreviewWindow())} className="btn">
+            <GrClose size={14} />
+          </button>
+        ) : (
+          ""
+        )}
       </div>
       {mails.status === "loading" && <h1 className="h3">Loading...</h1>}
       <div className="flex gap-2">
         {mails.status === "success" && (
-          <div
-            className={`${isPreviewWindowOpen} ? full-inbox inbox  : full-inbox inbox`}
-          >
+          <div className={`${isPreviewWindowOpen} ? inbox  : full-inbox`}>
             {" "}
             {finalData.length === 0 ? (
               <h1 className="h4 f-center">Did not match anything...</h1>

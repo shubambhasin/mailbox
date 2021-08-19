@@ -4,11 +4,9 @@ import { useLocation } from "react-router";
 import { setCurrentMail } from "../../features/mail/mailSlice";
 import "./mailbody.css";
 const MailBody = ({ mail }) => {
-  const mails = useSelector((state) => state.mails);
-
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
+   const mails = useSelector((state) => state.mails);
   const location = useLocation();
-
   const mailId = new URLSearchParams(location.search).get("id");
 
   //   const currentMail = mails.mails.filter((mail) => mail.id === Number(mailId));

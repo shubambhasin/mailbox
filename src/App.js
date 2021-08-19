@@ -20,8 +20,8 @@ function App() {
     function handleResize() {
       if (window.innerWidth < 768) {
         dispatch(closeNavbar());
-      } else if(window.innerWidth > 778) {
-        dispatch(openNavbar())
+      } else if (window.innerWidth > 778) {
+        dispatch(openNavbar());
       }
     }
     handleResize();
@@ -37,7 +37,6 @@ function App() {
     <div className="App">
       <Navbar />
       <NavbarVertical />
-
       <MyRoutes />
     </div>
   );

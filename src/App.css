@@ -41,3 +41,24 @@ hr {
   cursor: pointer;
   color: white;
 }
+
+/* *********misc*************** */
+
+@media screen and (max-width: 500px)
+{
+
+
+  .clear-on-mobile{
+      display: none;
+  }
+  input{
+    width: 100px;
+  }
+  .btn-green{
+    width: fit-content;
+    padding: 2px;
+  }
+  .fixed-text{
+    width: max-content;
+  }
+}
