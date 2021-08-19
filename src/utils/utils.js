@@ -13,7 +13,9 @@ export const getFinalData = (data, search) => {
     return data.map((data) => data);
   } else {
     return data.filter(
-      (mail) => mail.subject.includes(search) || mail.body.includes(search)
+      (mail) =>
+        mail.subject.toLowerCase().includes(search.toLowerCase()) ||
+        mail.body.toLowerCase().includes(search.toLowerCase())
     );
   }
 };
