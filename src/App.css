@@ -1,39 +1,40 @@
+@import "https://ease-css.netlify.app/ease/css/ease.css";
+
+*{
+  box-sizing: border-box;
+}
 .App {
-  text-align: center;
+
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+hr {
+  border-top: 0;
+  margin-top: 50px;
 }
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.container-slim {
+  margin-top: 50px;
+  margin-left: 205px;
+  transition: 0.3s all;
 }
+.container-full {
+  margin-top: 50px;
+  width: 90%;
+  margin-left: 55px;
+  transition: 0.3s all;
 
-.App-link {
-  color: rgb(112, 76, 182);
 }
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.link{
+  color: black;
 }
