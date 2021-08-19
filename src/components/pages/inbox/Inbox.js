@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setCurrentMail } from "../../../features/mail/mailSlice";
 import { togglePreviewWindow } from "../../../features/navbar/navbarSlice";
-import { getFilteredMails } from "../../../utils/utils";
+import { getFilteredMails, getFinalData } from "../../../utils/utils";
 import MailBody from "../../mailBody/MailBody";
 import Mails from "../../mails/Mails";
-import MailTile from "../../tile/MailTile";
 import "./inbox.css";
 const Inbox = () => {
   const mails = useSelector((state) => state.mails);
@@ -15,7 +14,9 @@ const Inbox = () => {
   const location = useLocation();
   var searchParams = new URLSearchParams(location.search.toString());
   const filter = searchParams.get("filter");
-  const filteredMails = getFilteredMails(mails, filter);
+  const search = searchParams.get("search")
+  const filteredMails = getFilteredMails(mails, filter );
+  const finalData = getFinalData(filteredMails, search)
 
   const mailId = new URLSearchParams(location.search).get("id");
 
@@ -45,7 +46,7 @@ const Inbox = () => {
         {mails.status === "success" && (
           <div className={`${isPreviewWindowOpen} ? full-inbox inbox  : full-inbox inbox`}>
             {" "}
-            <Mails mails={filteredMails} />
+            <Mails mails={finalData} />
           </div>
         )}
         {/* { mailId !== null && <div className="mailbody-container">

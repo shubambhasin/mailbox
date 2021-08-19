@@ -13,9 +13,18 @@ const Navbar = () => {
   // console.log(searchParams.get("filter"));
   const filter = searchParams.get("filter");
 
+  console.log(searchParams)
+
   const handleSearch = (e) => {
     e.preventDefault()
-      navigate(`?search=${searchQuery}`)
+        if(filter !== null)
+        {
+          navigate(`?filter=${filter}&search=${searchQuery}`)
+        }
+        else{
+          navigate(`?search=${searchQuery}`)
+          
+        }
   };
 
   const dispatch = useDispatch();
